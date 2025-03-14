@@ -1,0 +1,49 @@
+% !TEX root = ../main.tex
+
+\renewcommand{\arraystretch}{1.3}
+
+\newcommand{\yay}{\textcolor{black}{$\Uparrow$}\xspace}
+\newcommand{\nay}{\textcolor{red}{$\Downarrow$}\xspace}
+\newcommand{\neu}{}
+\newcommand{\con}{\textcolor{blue}{$\circlearrowleft$}\xspace}
+
+\begin{table}[t!]
+
+\adjustbox{}{
+
+\begin{tabular}{p{5cm}m{0.5cm} m{0.5cm} m{0.5cm} m{0.5cm} m{0.5cm} m{0.5cm} m{0.5cm} m{0.5cm}}
+
+\multicolumn{1}{l}{~} &
+\headrow{Enhances activity} & 
+\headrow{Enhances education} & 
+\headrow{Enhances lock-in}  & 
+\headrow{Resilient to farming} & 
+\headrow{Revenue for project} & 
+\headrow{Revenue for third parties} & 
+\headrow{Revenue for user} \\ \hline 
+
+\multicolumn{1}{c}{\textbf{Stakeholder}} & \multicolumn{7}{c}{\textbf{Deliverables}} \\
+
+\hline
+ 						% txs	%edu	%lock	%farm	%plat	%tps	%user
+Project: Developers			& \yay	& \yay	& \yay	& \con	& \yay	& \neu	& \neu 	\\ \hline
+Project: Executives			& \yay	& \yay	& \yay	& \nay	& \yay	& \yay	& \con 	\\ \hline
+Project: Investors			& \yay	& \yay	& \yay	& \con	& \yay	& \neu	& \yay 	\\ \hline
+Project: Token Holders		& \yay	& \neu	& \yay	& \nay	& \yay	& \neu	& \neu 	\\ \hline
+
+Users: Transactional			& \neu	& \neu	& \neu	& \neu	& \neu	& \neu	& \yay 	\\ \hline
+Users: Exploratory			& \neu	& \yay	& \neu	& \neu	& \neu	& \neu	& \neu 	\\ \hline
+Users: Loyal                             & \yay	& \yay	& \yay	& \yay	& \neu	& \neu	& \neu 	\\ \hline
+
+Third Party: DApps			& \yay	& \yay	& \yay	& \yay	& \neu	& \yay	& \neu 	\\ \hline
+Third Party: Quest Platforms	& \yay	& \neu	& \nay	& \neu	& \neu	& \neu	& \yay 	\\ \hline
+Third Party: Metric Platforms	& \neu	& \neu	& \neu	& \yay	& \neu	& \neu	& \neu 	\\ \hline
+
+\end{tabular}
+} % end resizebox
+
+\caption{A set of stakeholder groups and potential deliverables from a quest platform. Each cell indicates the priority of the stakeholder for the deliverable: empty means the priority is ambivalent to moderately favourable, \yay means it is high priority, \nay means the stakeholder opposes the deliverable, and \con indicates conflicting priorities within the stakeholder group. \label{tab:stake}}
+\end{table}
+
+\renewcommand{\arraystretch}{1.0}
+

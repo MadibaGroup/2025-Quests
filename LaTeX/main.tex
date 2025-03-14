@@ -1,0 +1,78 @@
+\documentclass[runningheads]{llncs}
+\bibliographystyle{splncs04}
+\usepackage[T1]{fontenc}
+\usepackage[misc]{ifsym}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{adjustbox}
+\usepackage{amssymb}
+
+
+\usepackage{tabularx}
+\newcommand{\headrow}[1]{\multicolumn{1}{c}{\adjustbox{angle=45,lap=\width-0.5em}{#1}}}
+
+% = = = = = Packages = = = = = %
+
+\input{setup/macros}
+
+
+% = = = = = Title = = = = = %
+
+\begin{document}
+
+\title{Quest Love: Do Blockchain Points Build Loyalty or Just Feed the Bots?}
+\titlerunning{Quest Love}
+
+\author{
+	Joseph Al-Chami\inst{1} \and 
+	Jeremy Clark\inst{2}\orcidID{0000-0002-3533-5965}
+	}
+
+\institute{
+	Independent Researcher \\ \email{alchamijoseph@gmail.com} \and
+	Concordia University, Montreal, Canada \\ \email{j.clark@concordia.ca} 
+	}
+	
+	
+
+\maketitle
+
+
+% = = = = = Abstract = = = = = %
+
+\begin{abstract}
+
+Blockchain ecosystems---such as those built around chains, layers, and services---try to engage users for a variety of reasons: user education, growing and protecting their market share, climbing metric-measuring leaderboards with competing systems, demonstrating usage to investors, and identifying worthy recipients for newly created tokens (airdrops). A popular approach is offering user quests: small tasks that can be completed by a user, exposing them to a common task they might want to do in the future, and rewarding them for completion. In this paper, we capture blockchain data from one deployed quest system that offered 43 unique quests over 10 months with 80M completions. We use this data to offer insight about the factors that impact task completion: amount of reward, monetary value of reward, difficulty, and cost. We also discuss the role of farming and bots, and the factors that complicate distinguishing real users from automated scripts.
+
+\end{abstract}
+
+%\keywords{blockchain \and decentralized finance \and quests }
+
+% = = = = = Main Body = = = = = %
+
+\input{sections/body}
+
+% = = = = = Acknowledgements  =  =  =  =  = = %
+
+\subsubsection*{Acknowledgements.} 
+%We thank the reviewers who helped to improve our paper. 
+J. Clark acknowledges support for this research project from (i) the National Sciences and Engineering Research Council (NSERC), Raymond Chabot Grant Thornton, and Catallaxy Industrial Research Chair in Blockchain Technologies, (ii) the AMF (Autorité des Marchés Financiers), and (iii) NSERC through a Discovery Grant. 
+
+% = = = = = Bibliography = = = = = %
+
+\bibliography{bib/quests.bib}
+\nocite{*}
+
+% = = = = = End Notes = = = = = %
+
+\clearpage
+\appendix
+
+\end{document}
+
+
+
+
+
+
+
