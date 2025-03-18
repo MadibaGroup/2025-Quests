@@ -2,21 +2,23 @@
 
 \section{Introductory Remarks}
 
-Blockchain projects understand that even the best technical ideas and code can only achieve so much without user adoption of the platform. Projects can struggle to reach users, who generally operate pseudonymously, and users do not always browse for new blockchain projects---there is no high profile `DApp store.'  One approach for introducing users to a new blockchain (including layer 1 chains, sidechains, and layer 2 solutions) is showcasing its features and partners through gamification. A set of \textit{quests} or \textit{tasks} or \textit{boosts} are created that offer a \textit{bounty} or \textit{reward} to users for performing a specific action on the blockchain, such as transferring a token or using a specific DeFi service. The reward could be a collectable badge (often as an NFT), points on a leaderboard (often referred to as XP, inspired by games like Fortnite and platforms like Duolingo), or an airdrop of tokens with some monetary value. Most projects favour the term `quests' over `tasks' to avoid associations with employment. The term quest highlights the user's journey toward achievement and mastery, creating a more legally favourable framing rooted in gamification. Despite the aspirational tone, these actions remain structured and transactional, serving both users’ reward-driven motivations and projects’ growth and engagement objectives.
+Blockchain projects understand that even the best technical ideas and code may struggle to have an impact without user adoption of the platform. There is no clear method for reaching pseudonymous users, who rarely seek out new blockchain platforms, and there’s no prominent `DApp store.' 
+
+One approach for introducing users to a new blockchain (including layer 1 chains, sidechains, and layer 2 solutions) is showcasing its features and partners through gamification. A set of \textit{quests} or \textit{tasks} or \textit{boosts} are created that offer a \textit{bounty} or \textit{reward} to users for performing a specific action on the blockchain, such as transferring a token or using a specific DeFi service. The reward could be a collectable badge (often as an NFT), points on a leaderboard (often referred to as XP, inspired by games like Fortnite and platforms like Duolingo), or an airdrop of tokens with some monetary value. Most projects favour the term `quests' over `tasks' to avoid associations with employment. The term quest highlights the user's journey toward achievement and mastery, creating a more legally favourable framing rooted in gamification. Despite the aspirational tone, these actions remain structured and transactional, serving both users’ reward-driven motivations and projects’ growth and engagement objectives.
 
 A few examples of quest initiatives include Arbitrum's Odyssey 2.0, Avalanche's Coachella Quests, Base's Builder Quests, Binance's BSC GameFi Quest and Polygon's Wallet Suite Quest. Platforms like Galxe, Layer3, Boost, DeBank, and Zealy have emerged as centralized hubs offering users a variety of quests from multiple projects and have adopted the description: the loyalty layer. 
 
-In this measurements paper, we study one quest system over time to understand how the completion-rate of quests are correlated with factors such as difficulty, cost, reward amount, and reward type (monetary or non-monetary value). From our data, we are not able to directly classify users between humans and bots, however we do offer some insights and discussion points about the influence of automated task-completion. To inform this discussion, we identify key stakeholders involved (such as the blockchain, services on the blockchain, investors, activity monitoring services, users, and bots) and analyze their preferences and incentives. We maintain a neutral position on whether quests are useful or not---we study them because they are commonly used (perhaps poised for broader adoption) and we failed to find another detailed study on the parameters that impact task completion. 
+In this measurements paper, we study one quest system over time to understand how the completion-rate of quests are correlated with factors such as difficulty, cost, reward amount, and reward type (monetary or non-monetary value). From our data, we are not able to directly classify users between humans and bots, however we do offer some insights and discussion points about the influence of automated task-completion. To inform this discussion, we identify key stakeholders involved (such as the blockchain, services on the blockchain, investors, activity monitoring services, users, and bots) and analyze their preferences and incentives. We maintain a neutral position on whether quests are useful or not---we study them because they are commonly used (perhaps poised for broader adoption) and we failed to find another detailed study on the parameters that correlate with task completion. 
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 \subsection{Research Questions} 
-Our paper sheds light on the following research questions (RQs):
+Our paper sheds light on the following research question (RQ) and two discussion questions (DQs). DQs have a less (or no) empirical basis but are based on insights or discussion points. 
 
 \begin{itemize}
 \item \textbf{RQ1:} What factors are correlated with quest completion rates? We analyze (a) reward amount, (b) task difficulty, (c) cost, (d) reserve requirements, and (e) rewards with monetary value.
-\item \textbf{RQ2:} To what extent can the design of the quest help distinguish genuine users from automated bots and farming?
-\item \textbf{RQ3:} Who are the stakeholders in quest systems? What can we learn from their preferences?
+\item \textbf{DQ1:} To what extent can the design of the quest help distinguish genuine users from automated bots and farming?
+\item \textbf{DQ2:} Who are the stakeholders in quest systems? What can we learn from their preferences?
 \end{itemize}
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -27,21 +29,22 @@ For our paper, we study a quest system built and maintained by a company offerin
 
 The con is that we offered the company final say over being named or identifiable in our paper; they declined after our study was complete. Thus we only provide our dataset after processing and de-identifying.\footnote{Available on GitHub: \url{https://github.com/MadibaGroup/2025-Quests}} Our statistics and figures can be replicable from the data and new insights could be developed by other researchers, however the accuracy of the data cannot be independently verified against on-chain data or website archives.
 
-The pro of engaging with a company is that we were able to inform the quest design to some extent. For example, we were able to suggest the addition of reserve requirements (§\ref{sec:thresh}) to quests and rewards with monetary value (§\ref{sec:rewards}), and ensure they were added/removed from tasks that otherwise were unchanged (isolating two main variables: the requested feature and the epoch). To control for different completions across epochs, we ensured some tasks were offered across multiple epochs without change.
+The pro of engaging with a company is that we were able to inform the quest design to some extent. For example, we were able to suggest the addition of reserve requirements (§\ref{sec:thresh}) to quests and rewards with monetary value (§\ref{sec:rewards}), and ensure they were added/removed from tasks that otherwise were unchanged (isolating two main variables: the requested feature and the epoch). To control for different completion rates across epochs, we also ensured some tasks were offered across multiple epochs without change.
 
 The data we used includes the quest system's website interface where each quest corresponds to specific actions executed on-chain, defined by interactions with smart contracts. Upon quest completion, the loyalty program verifies the user's on-chain transaction to confirm that all quest requirements are met. Once verified, the program stores the details in the company's database—including transaction hash, user address, and contract address. This information is merged with additional off-chain data such as the points awarded for quest completion and the epoch, a time metric controlled by the loyalty program rather than the blockchain. We were provided SQL access to this raw data and exported CSV files (anonymized and available on our repository) for analysis.
 
-%Future studies could monitor 
 
-%While similar data could be approximated by monitoring the user interface and manually recording point allocations, this method risks inaccuracies since some qualifying transactions may not originate from the loyalty program's interface.
+\subsection{Dataset and Representativeness}
 
+%While future studies could analyze multiple quest systems, our findings are broadly applicable. Our dataset covers a wide range of quest types—DeFi, NFTs, social, gaming, and transfers—ensuring relevance across blockchain ecosystems. It includes varying difficulties, cost levels, and participation thresholds, making it applicable to both expensive and low-cost chains. The study also spans pre- and post-airdrop phases, capturing shifts in user motivation. Finally, by analyzing both points-based and token-based rewards, we cover the primary incentive models used in blockchain loyalty programs. However, the evolving nature of AI-driven automation introduces uncertainty over time. As Walters et al. (2025) highlight, on-chain AI agents like ElizaOS can autonomously execute transactions, interact with smart contracts, and manage wallets, mirroring quest completion actions. With AI-generated code simplifying bot creation, future research must explore how automation will impact Web3 loyalty programs.
+%[https://arxiv.org/pdf/2501.06781]
 
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 \subsection{Key Events in Dataset}
 
-Our research analyzes data spanning the entirety of 2024. New quests are offered for an epoch, which was initially a one day period and transitioned (at epoch 10) to one week. Our data is organized by epoch 5 (no data was collected for epoch 1--4) to epoch 42. Over this period, 43 unique quests were offered. Some quests were offered in multiple epochs and could be completed multiple times. 1.2M unique addresses completed at least one quest.  Across the period, 80M quests were completed.
+Our research analyzes data spanning the entirety of 2024. New quests are offered for an epoch, which was initially a one day period and transitioned (at epoch 10) to one week. Our data is organized by epoch 5--42 (the company's backend database starts at epoch 5). Over this period, 43 unique quests were offered. Some quests were offered in multiple epochs and could be completed multiple times. 1.2M unique addresses completed at least one quest.  Across the period, 80M quests were completed.
 
 \begin{figure}[t]
     \centering
@@ -89,7 +92,7 @@ Finally, we note that in the later epochs, a strong negative monotonic relations
     \caption{Quest difficulty is strongly associated with completion rates, with easy quests (purple) completed most often and difficult quests (orange) completed least often. Variance in the right tail (epochs 40+) correspond to offering medium quests (pink) with tokens of monetary value (see RQ5).\label{fig:difficulty}}
 \end{figure}
 
-The first research question addresses points, which pull users toward certain quests. On the other side, frictions or deterrents may push users away from certain quests. RQ2--4 address three of these: difficulty, cost, and minimum token requirements (or thresholds). In RQ2, we consider task difficulty. We classify all quests based on (i) completion time, as measured by lead researcher who completed each quest modelling average user behaviour; and (ii) external dependencies that are out of the user's direct control, such as waiting for a response from another system, interacting with other users, or relying on network availability:
+The first research question addresses points, which pull users toward certain quests. On the other side, frictions or deterrents may push users away from certain quests. RQ2--4 address three of these: difficulty, cost, and minimum token requirements (or thresholds). In RQ2, we consider task difficulty. We classify all quests based on (i) completion time and (ii) external dependencies that are out of the user's direct control, such as waiting for a response from another system, interacting with other users, or relying on network availability. Completion time was measured by lead researcher who completed each quest modelling average user behaviour; we felt this was objective enough but more robust followup studies might take the agreement of several researchers independently assessing difficulty.
 
 \begin{itemize}
 \item Easy: quest takes less than 1 minute and has no external dependencies.
@@ -120,7 +123,7 @@ In Figure~\ref{fig:cost}, we show a selection of quests from epochs 37--46 (late
 Using the Spearman correlation, we found that correlations across epochs ranged from -0.843 to -0.896, consistently showing the strongest monotonic relationship among all research questions.
 As shown in Figure 3, the rank ordering of cost and completions reveals a clear pattern—less costly quests (e.g., purple, costing less than \$0.10) are completed far more frequently than higher-cost quests (e.g., orange, costing up to \$10). This finding reinforces the idea that cost is strongly associated with lower task completion.
 
-Since cost showed the strongest correlation, we infer that users are not completing quests randomly, nor are they primarily motivated by mastery or loyalty. Instead, their behavior suggests a tendency to minimize cost, aligning with patterns commonly associated with Sybils or automated bots. This observation led us to the next research question, where thresholds were introduced to user wallets to investigate their impact on completion rates and assess whether financial deterrents influence engagement in a more structured manner. 
+Since cost showed the strongest correlation, we infer that users are not completing quests randomly, nor are they primarily motivated by mastery or loyalty. Instead, their behavior suggests a tendency to minimize cost, aligning with patterns commonly associated with Sybils or automated bots. This observation led us to the next research question, where thresholds were introduced to user wallets to investigate their association with completion rates and assess whether financial deterrents influence engagement in a more structured manner. 
 
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -170,7 +173,9 @@ In epoch 46, two quests with token rewards showed different outcomes. While the 
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-\section{RQ2: Bots and farming}
+\section{Discussion}
+
+\subsection{DQ1: Bots and farming}
 
 We currently lack data revealing how many task completions come from unique individuals versus repeat participants using multiple addresses (farming), whether by manual sybils or automated bots. Both human users and bots seem drawn to quests with higher monetary rewards, simpler tasks, and lower costs, making it difficult to distinguish them based on these factors alone.
 
@@ -211,7 +216,7 @@ By studying claims made very quickly or even launching a quest such as `make a c
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-\section{RS3: Stakeholder Analysis} 
+\subsection{DQ2: Stakeholder Analysis} 
 
 \input{figures/stakeholders.tex}
 
@@ -227,6 +232,10 @@ We expect project-based stakeholders to tacitly support farming (or at least tur
 
 When it comes to the final three columns, which emphasize the main groups that might make revenue from quests, there are no big surprises. No one opposes stakeholder capturing some revenue and stakeholder groups are self-interested, prioritizing revenue to themselves. In our evaluation, we assume revenues are non-zero sum---that is, revenue to one stakeholder group does not siphon profit from the others.
 
+
+
+% 
+
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 \section{Concluding Remarks}
@@ -236,4 +245,18 @@ It is easy to see why quest systems are popular. In Web3, reaching users with a 
 
 
 
+% other programs have similar quests, main difference is it’s on another chain, we don’t a reason why we wouldn’t generalize.
+%if quest is different, in our model we did abstract the type of quest to like the factors that could impact them like difficulty,.. [we don’t if it applies, conjecture]
+%If results were very different, over time it would change, advances in ai. Our results from 2024 don’t necessarily translate to 2028 for bots, but for humans they probably do. 
+%Where do we add this? JWC
+
+%Future work
+% ground truth about bots and humans
+% The authors should put more effort into the identification of bots. I agree that this is a challenging task, but many of the findings are severely impaired by the lack of this data. In addition to the «number of distinct completions», variables like task difficulty can be completely off, if for example the external dependency is in fact just a coordination between 2 bot instances of the same entity.
+%This is very understandable that it would have been great if we could have arrived at identifying bots. While we didn’t completely answer this we did propose 3 heuristics that can help identify bots and an experiment that was done to identify them, however being 100% sure requires much more dedicated research for this. %We hope that as a first look this paper will inspire future investigations. 
+
+
+%%Future studies could monitor 
+
+%While similar data could be approximated by monitoring the user interface and manually recording point allocations, this method risks inaccuracies since some qualifying transactions may not originate from the loyalty program's interface.
 
