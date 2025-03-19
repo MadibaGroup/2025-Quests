@@ -4,7 +4,7 @@
 
 Blockchain projects understand that even the best technical ideas and code may struggle to have an impact without user adoption of the platform. There is no clear method for reaching pseudonymous users, who rarely seek out new blockchain platforms, and there’s no prominent `DApp store.' 
 
-One approach for introducing users to a new blockchain (including layer 1 chains, sidechains, and layer 2 solutions) is showcasing its features and partners through gamification. A set of \textit{quests} or \textit{tasks} or \textit{boosts} are created that offer a \textit{bounty} or \textit{reward} to users for performing a specific action on the blockchain, such as transferring a token or using a specific DeFi service. The reward could be a collectible badge (often as an NFT), points on a leaderboard (often referred to as XP, inspired by games like Fortnite and platforms like Duolingo), or an airdrop of tokens with some monetary value. Most projects favour the term `quests' over `tasks' to avoid associations with employment. The term quest highlights the user's journey toward achievement and mastery, creating a more legally favourable framing rooted in gamification. Despite the aspirational tone, these actions remain structured and transactional, serving both users’ reward-driven motivations and projects’ growth and engagement objectives.
+One approach for introducing users to a new blockchain (including layer 1 chains, sidechains, and layer 2 solutions) is showcasing its features and partners through gamification. A set of \textit{quests} or \textit{tasks} or \textit{boosts} are created that offer a \textit{bounty} or \textit{reward} to users for performing a specific action on the blockchain, such as transferring a token or using a specific DeFi service. The reward could be a collectible badge (often as an NFT), points on a leaderboard (often referred to as XP, inspired by games like Fortnite and platforms like Duolingo), or an airdrop of tokens with some monetary value~\cite{FB19,MYL24,YL24}. Most projects favour the term `quests' over `tasks' to avoid associations with employment. The term quest highlights the user's journey toward achievement and mastery, creating a more legally favourable framing rooted in gamification. Despite the aspirational tone, these actions remain structured and transactional, serving both users’ reward-driven motivations and projects’ growth and engagement objectives.
 
 A few examples of quest initiatives include Arbitrum's Odyssey 2.0, Avalanche's Coachella Quests, Base's Builder Quests, Binance's BSC GameFi Quest and Polygon's Wallet Suite Quest. Platforms like Galxe, Layer3, Boost, DeBank, and Zealy have emerged as centralized hubs offering users a variety of quests from multiple projects and have adopted the description: the loyalty layer. 
 
@@ -19,19 +19,28 @@ Our paper sheds light on the following research question (RQ) and two discussion
 \item \textbf{RQ1:} What factors are correlated with quest completion rates? We analyze (a) reward amount, (b) task difficulty, (c) cost, (d) reserve requirements, and (e) rewards with monetary value.
 \item \textbf{DQ1:} To what extent can the design of the quest help distinguish genuine users from automated bots and farming?
 \item \textbf{DQ2:} Who are the stakeholders in quest systems? What can we learn from their preferences?
+\item \textbf{DQ3:} Did the quest platform build user loyalty?
 \end{itemize}
+
+% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+\subsection{Related Work}
+
+We are not aware of other research papers on quest systems for blockchain projects. Brand loyalty programs~\cite{DU97} have been studied deeply, and more recently gamification of learning tasks~\cite{HKS14}. Experience points in games have been criticized~\cite{Bog13}. For loyalty programs, Wulf \etal outline several drivers of participation~\cite{Wulf03}. Relevant to our study are: users engage when costs are zero as opposed to non-zero, they are asked to make minimal efforts as opposed to extended efforts, and when rewards are `hard' (\eg a discount) as opposed to `soft' (\eg product updates). 
+
+On the blockchain side, the relationship between new tokens and user adoption has been studied~\cite{BH19}. One particular (and recent) focus is on airdrops~\cite{FB19,MYL24,YL24} where a large quantity (majority to totality) of tokens are distributed to users for the first time. This literature finds a positive impact of airdrops on token value, that retaining user engagement after an airdrop is difficult, and evidence of artificial engagement to `farm' airdropped tokens (including detection algorithms~\cite{FTWC23,ZCH+24}). In our dataset, the quest system is run both before and after an airdrop. In discussing the role of farming and bots, we use a persuasion model~\cite{Fogg09} which suggests certain deterrents to engagement: time, money, physical effort, brain cycles, social deviance, and non-routine. We examine the relationship between quest difficulty (time, brain cycles, and non-routine) and cost (money) with completion, assuming most quests have similar levels of physical effort (minimal) and social deviance (legal or unregulated in most jurisdictions). 
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 \subsection{Dataset \& Limitations}
 
-\paragraph{Reproducibility.} For our paper, we study a quest system built and maintained by a company offering a new blockchain. The quests themselves were co-designed with various services (DApps) running on the company's blockchain. The choice to use proprietary data has pros and cons. 
+\paragraph{Reproducibility.} For our paper, we study a quest system built and maintained by a company offering a new EVM-compatible, proof of stake blockchain. The quests themselves were co-designed with various services (DApps) running on the company's blockchain. The choice to use proprietary data has pros and cons. 
 
 The disadvantage is that we offered the company final say over being named or identifiable in our paper; they declined after our study was complete. Thus we only provide our dataset after processing and de-identifying.\footnote{Available on GitHub: \url{https://github.com/MadibaGroup/2025-Quests}} Our statistics and figures can be replicable from the data and new insights could be developed by other researchers, however the accuracy of the data cannot be independently verified against on-chain data or website archives.
 
 The advantage of engaging with a company is that we were able to inform the quest design to some extent. For example, we were able to suggest the addition of reserve requirements (§\ref{sec:thresh}) to quests and rewards with monetary value (§\ref{sec:rewards}), and ensure they were added/removed from tasks that otherwise were unchanged (isolating two main variables: the requested feature and the epoch). To control for different completion rates across epochs, we also ensured some tasks were offered across multiple epochs without change.
 
-\paragraph{Representativeness.} Our dataset originates from a single platform, which means we cannot assert broad generalizability. However, the platform's quests and bot-control measures appear standard and comparable to other blockchain quest systems we examined. Our data covers both pre- and post-airdrop periods, enabling us to observe user behaviour changes around significant events. It's important to note that our findings may become less representative over time due to the increasing ease with which non-experts can create bots, particularly as AI-driven tools and autonomous agents such as ElizaOS~\cite{} become more prevalent.
+\paragraph{Representativeness.} Our dataset originates from a single platform, which means we cannot assert broad generalizability. However, the platform's quests and bot-control measures appear standard and comparable to other blockchain quest systems we examined. Our data covers both pre- and post-airdrop periods, enabling us to observe user behaviour changes around significant events. It's important to note that our findings may become less representative over time due to the increasing ease with which non-experts can create bots, particularly as AI-driven agents~\cite{Ante24,WGN+25} become more prevalent.
 
 \paragraph{Ground Truth on Bots.} We lack ground truth distinguishing genuine users from Sybil accounts, whether manual (farming) or automated (bots/scripts). Thus, our data reports only unique address completions, and interpretations should be made cautiously of this fact. Nevertheless, understanding factors correlated with quest completion rates remains valuable for designing effective blockchain engagement strategies, even without explicit bot classification.
 
@@ -40,9 +49,6 @@ The advantage of engaging with a company is that we were able to inform the ques
 \subsection{Data Analysis}
 
 The data we used includes the quest system's website interface where each quest corresponds to specific actions executed on-chain, defined by interactions with smart contracts. Upon quest completion, the loyalty program verifies the user's on-chain transaction to confirm that all quest requirements are met. Once verified, the program stores the details in the company's database—including transaction hash, user address, and contract address. This information is merged with additional off-chain data such as the points awarded for quest completion and the epoch, a time metric controlled by the loyalty program rather than the blockchain. We were provided SQL access to this raw data and exported CSV files (anonymized and available on our repository) for analysis. The statistics we compute (such as Spearman correlation) are documented in our repository. We skip the details in the paper as the techniques themselves not novel or innovative. 
-
-
-
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -61,13 +67,6 @@ As seen in  Figure~\ref{fig:events}, overall participation seems to be influence
 
 In epoch 36, a new program was launched where certain quests would receive token rewards (which have monetary value), as opposed to just receiving XP points. We will study this further in RQ5 but for now, we note that this leads an increase in participation: 34\% increase in epoch 37 and 128.7 \% by epoch 42. The reward program kept evolving and increasing rewards over the following epochs. By epoch 50 the cumulative effect of this token program was 251.8\%.
 
-% = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-\subsection{Related Work}
-
-Recent papers have studied airdrops of new tokens~\cite{FB19,MYL24,YL24}. Airdrops studied in this literature are large-scale events where a large quantity (majority to totality) of tokens are distributed to users for the first time. This literature finds a positive impact of airdrops on token value, that retaining user engagement after an airdrop is difficult, and evidence of artificial engagement to `farm' airdropped tokens. If a quest system predates an airdrop, quest completion can be a factor in determining airdrop recipients. 
-
-Our research questions are influenced by a persuasion model called the Fogg Behaviour Model~\cite{Fogg09} which suggests certain deterrents to engagement: time, money, physical effort, brain cycles, social deviance, and non-routine. We examine the influence of quest difficulty (time, brain cycles, and non-routine) and cost (money) on completion, assuming most quests have similar levels of physical effort (minimal) and social deviance (legal or unregulated in most jurisdictions). 
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -80,9 +79,9 @@ Our research questions are influenced by a persuasion model called the Fogg Beha
     \caption{Reward amount (in non-monetary points) of different quests offered from Epoch 5--42. Completion rates do not correlate with points, indicating other contributing factors.\label{fig:points}}
 \end{figure}
 
-Points have long been a key element in gamification systems, primarily used to incentivize specific behaviours or actions, such as educational tasks, objectives in a game, or fostering loyalty through purchases at a business. For quests, points are usually presented in leaderboards---a public, ordered ranking of users and their points, which can boost competition, and result in users striving not merely to collect points but to climb the ranks. Leaderboards have a downside too. Newcomers might feel deterred by the seemingly insurmountable gap between themselves and top-ranked users, and excessive focus on ranking can foster cheating or the transacting of user profiles (with their points).
+Points have long been a key element in gamification systems~\cite{HKS14}, primarily used to incentivize specific behaviours or actions, such as educational tasks, objectives in a game, or fostering loyalty through purchases at a business. For quests, points are usually presented in leaderboards---a public, ordered ranking of users and their points, which can boost competition, and result in users striving not merely to collect points but to climb the ranks. Leaderboards have a downside too. Newcomers might feel deterred by the seemingly insurmountable gap between themselves and top-ranked users, and excessive focus on ranking can foster cheating or the transacting of user profiles (with their points).
 
-To what extent do points motivate users? Consider Figure~\ref{fig:points} where it shows a dot for each quest offered in each epoch (x-axis) and the number of times it was completed (y-axis). The shape of the curve follows the overall trend (Figure~\ref{fig:events}). The dots in Figure~\ref{fig:points} are colour-coded for how many points the user receives for completing the quest. A simple hypothesis is that quest completions would correlate positively with the number of points. Using the Spearman correlation, we found that correlations across epochs ranged from -0.115 to -0.870, with no epoch showing a significant positive monotonic relationship. In other words, the rank ordering of points and completions does not reveal any consistent patterns—for instance, higher points do not reliably correspond to more completions.
+To what extent do points motivate users? Consider Figure~\ref{fig:points} where it shows a dot for each quest offered in each epoch (x-axis) and the number of times it was completed (y-axis). The shape of the curve follows the overall trend (Figure~\ref{fig:events}). The dots in Figure~\ref{fig:points} are colour-coded for how many points the user receives for completing the quest. A simple hypothesis is that quest completions would correlate positively with the number of points. Using the Spearman correlation~\cite{Spe04}, we found that correlations across epochs ranged from -0.115 to -0.870, with no epoch showing a significant positive monotonic relationship. In other words, the rank ordering of points and completions does not reveal any consistent patterns—for instance, higher points do not reliably correspond to more completions.
 
 Finally, we note that in the later epochs, a strong negative monotonic relationship emerged, indicating that higher-point quests were completed less frequently. This was an intentional design decision, as more challenging quests were assigned higher point rewards to incentivize completion. As the data suggests, higher point rewards alone were not associated with increased engagement for these harder quests. Instead, quest difficulty, and other factors that act as deterrents, are more strongly associated with variations in task completion. This finding highlights the need to consider additional factors (RQ2–RQ5) to better understand the predictors of task completion.
 
@@ -179,7 +178,7 @@ In epoch 46, two quests with token rewards showed different outcomes. While the 
 
 \section{Discussion}
 
-\subsection{DQ1: Bots and farming}
+\subsection{DQ1: Bots and Farming}
 
 We currently lack data revealing how many task completions come from unique individuals versus repeat participants using multiple addresses (farming), whether by manual sybils or automated bots. Both human users and bots seem drawn to quests with higher monetary rewards, simpler tasks, and lower costs, making it difficult to distinguish them based on these factors alone.
 
@@ -194,7 +193,8 @@ Finally, we observe that to complete a quest, an address needs to hold an adequa
 Putting this together, we suggest three heuristics that may help distinguish genuine users from bots. There are likely exceptions to all of them (\eg genuine humans running scripts) but we hypothesize that they would do better than random guessing at determining if a given address is a genuine user or a bot.
 
 \begin{itemize}
-\item Heuristic 1: If a quest alternates between unprofitable and profitable, bots will be sensitive to the exact moment it becomes marginally profitable and act.\item Heuristic 2: If a quest requires a threshold (minimal amount of tokens), bots will be sensitive to ensuring the address meets but does not exceed the threshold amount. 
+\item Heuristic 1: If a quest alternates between unprofitable and profitable, bots will be sensitive to the exact moment it becomes marginally profitable and act.
+\item Heuristic 2: If a quest requires a threshold (minimal amount of tokens), bots will be sensitive to ensuring the address meets but does not exceed the threshold amount. 
 \item Heuristic 3: If a (profitable) quest is announced (especially unexpectedly), bots will be the quickest to react.
 \end{itemize}
 
@@ -202,9 +202,9 @@ Finally we emphasize that if these heuristics were deployed in a way that harmed
 
 \paragraph{Quest design ideas.} In the absence of concrete measurements and based on these insights, we outline several ideas for collecting more robust data, and designing better quests that can help identify and quantify farming activity.
 
-Building on heuristic 1, if costs (\ie gas fees, service fees, buying a token or NFT as part of the quest, \etc) are slightly higher than rewards (\ie tokens of monetary value received for quest completion), genuine users might be happy they are at least receiving a subsidy for a quest they would complete anyways, while bots will avoid unprofitable tasks. When benefits are slightly higher than costs, bots will engage. For many quest designs, the profitability of the quest could be due to external factors such as fluctuations in gas rates or in the value of the token received. This could create the conditions for a `natural experiment' where a quest is offered over an epoch, but its profitability fluctuates between negative and positive. Activity spikes when it becomes positive could be largely attributed to bots.
+Building on heuristic 1, if costs (\ie gas fees, service fees, buying a token or NFT as part of the quest, \etc) are slightly higher than rewards (\ie tokens of monetary value received for quest completion), genuine users might be happy they are at least receiving a subsidy for a quest they would complete anyways (\cf~\cite{LdM07}), while bots will avoid unprofitable tasks. When benefits are slightly higher than costs, bots will engage. For many quest designs, the profitability of the quest could be due to external factors such as fluctuations in gas rates or in the value of the token received. This could create the conditions for a `natural experiment' where a quest is offered over an epoch, but its profitability fluctuates between negative and positive. Activity spikes when it becomes positive could be largely attributed to bots.
 
-A second idea corresponds to heuristic 2 and the use of thresholds (RQ5). If a quest can only be completed by addresses holding at least $X$ tokens, bot farms may need to move $X$ tokens between their addresses. In general, clustering algorithms can use heuristics on blockchain data to suggest addresses belonging to the same user, and inducing these kinds of transfers could help make the pattern more distinguishable. Farming can also be frustrated by requiring each address to have held $X$ tokens for a certain period of time (days or weeks). Of course, if a farm with $n$ bots holds more than $n\cdot X$ tokens, farms will be unaffected by the use of thresholds. 
+A second idea corresponds to heuristic 2 and the use of thresholds. If a quest can only be completed by addresses holding at least $X$ tokens, bot farms may need to move $X$ tokens between their addresses. In general, clustering algorithms can use heuristics on blockchain data to suggest addresses belonging to the same user, including for airdrops~\cite{FTWC23,ZCH+24}. Inducing these kinds of transfers could help make the pattern more distinguishable. Farming can also be frustrated by requiring each address to have held $X$ tokens for a certain period of time (days or weeks). Of course, if a farm with $n$ bots holds more than $n\cdot X$ tokens, farms will be unaffected by the use of thresholds. 
 
 A final idea builds on heuristic 3. In the quest system we studied, a smart contract was randomly replenished with a fixed daily reward pool of \$500. Pre-enrolled participants with sufficient loyalty points could claim a nominal reward (\$0.01 or \$0.025, depending on tier) until the pool was depleted. 
 
@@ -238,30 +238,23 @@ We expect project-based stakeholders to tacitly support farming (or at least tur
 When it comes to the final three columns, which emphasize the main groups that might make revenue from quests, there are no big surprises. No one opposes stakeholder capturing some revenue and stakeholder groups are self-interested, prioritizing revenue to themselves. In our evaluation, we assume revenues are non-zero sum---that is, revenue to one stakeholder group does not siphon profit from the others.
 
 
+\subsection{DQ3: Do Quests Build Loyalty?}
 
-% 
+Previous research on loyalty programs (LPs) offers mixed conclusions: some studies show positive effects on customer behavior and profitability (Vivek et al., 2012; Chaudhuri et al., 2019), while others question their effectiveness, emphasizing design and resource allocation (McKinsey, 2014; Steinhoff \& Palmatier, 2014). Loyalty can be measured behaviorally (e.g., retention, transaction volume) or attitudinally (e.g., satisfaction, willingness to recommend, NPS) (Dick \& Basu, 1994; Reichheld, 2003).
+In our analysis, we conclude that this program failed at building loyalty. We focus on two quantifiable metrics: retention and transaction count, as LPs primarily aim to retain customers who spend more and resist competitor incentives (Veloutsou 2015; KPMG, 2019).
+Using the retention rate (RR) formula:
+$RR= (E-N)/ S \cdot 100$
+Where:
+E: number of users at the end of the period 
+N: number of new users acquired during the period
+S: number of users at the start 
+
+Between epochs 21 and 35, RR was -0.183\%, indicating a complete lack of retention. After token rewards were introduced (epoch 42), RR rose slightly to just 0.59\%, still extremely low, suggesting users re-engaged only when incentives returned, reinforcing that their participation was purely transactional, not loyalty-driven.
+Additionally, transaction volume dropped sharply from 11,301,078 at peak participation to just 572,595 by epoch 39 (5\% of peak volume) before rewards triggered renewed quest completion. This further supports that user engagement was profit-driven rather than loyalty-driven.
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 \section{Concluding Remarks}
 
-It is easy to see why quest systems are popular. In Web3, reaching users with a new project is challenging. Web3 does not operate with an ``app store'' that is easy to browse. Beyond bringing in new users, quests promise to educate users and build loyalty. However if quests are too successful, farming and bots may follow real users. Farming is a kind of ``Midas touch'' for projects, immediately boosting metrics and engagement. But ultimately, it forces teams into an uncomfortable dilemma: either admit that much of their previous participation came from bots—risking tension with partners, genuine users, and investors—or remain silent and appear to lose the bulk of their user base. Relying on bots to attract additional users or applications is a perilous strategy, particularly for teams that lack a clear, long-term plan to manage bot activity and know when to stop engaging with them.
-
-
-
-
-% other programs have similar quests, main difference is it’s on another chain, we don’t a reason why we wouldn’t generalize.
-%if quest is different, in our model we did abstract the type of quest to like the factors that could impact them like difficulty,.. [we don’t if it applies, conjecture]
-%If results were very different, over time it would change, advances in ai. Our results from 2024 don’t necessarily translate to 2028 for bots, but for humans they probably do. 
-%Where do we add this? JWC
-
-%Future work
-% ground truth about bots and humans
-% The authors should put more effort into the identification of bots. I agree that this is a challenging task, but many of the findings are severely impaired by the lack of this data. In addition to the «number of distinct completions», variables like task difficulty can be completely off, if for example the external dependency is in fact just a coordination between 2 bot instances of the same entity.
-%This is very understandable that it would have been great if we could have arrived at identifying bots. While we didn’t completely answer this we did propose 3 heuristics that can help identify bots and an experiment that was done to identify them, however being 100% sure requires much more dedicated research for this. %We hope that as a first look this paper will inspire future investigations. 
-
-
-%%Future studies could monitor 
-
-%While similar data could be approximated by monitoring the user interface and manually recording point allocations, this method risks inaccuracies since some qualifying transactions may not originate from the loyalty program's interface.
+It is easy to see why quest systems are popular. In web3, reaching users with a new project is challenging. Web3 does not operate with an ``app store'' that is easy to browse. Beyond bringing in new users, quests promise to educate users and build loyalty. However if quests are too successful, farming and bots may follow real users. Farming is a kind of ``midas touch'' for projects, immediately boosting metrics and engagement. But ultimately, it forces teams into an uncomfortable dilemma: either admit that much of their previous participation came from bots---risking tension with partners, genuine users, and investor---or remain silent and appear to lose the bulk of their user base. Relying on bots to attract additional users or applications is a perilous strategy, particularly for teams that lack a clear, long-term plan to manage bot activity and know when to stop engaging with them.
 
