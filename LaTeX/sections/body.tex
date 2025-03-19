@@ -19,7 +19,6 @@ Our paper sheds light on the following research question (RQ) and two discussion
 \item \textbf{RQ1:} What factors are correlated with quest completion rates? We analyze (a) reward amount, (b) task difficulty, (c) cost, (d) reserve requirements, and (e) rewards with monetary value.
 \item \textbf{DQ1:} To what extent can the design of the quest help distinguish genuine users from automated bots and farming?
 \item \textbf{DQ2:} Who are the stakeholders in quest systems? What can we learn from their preferences?
-\item \textbf{DQ3:} Did the quest platform build user loyalty?
 \end{itemize}
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -67,6 +66,7 @@ As seen in  Figure~\ref{fig:events}, overall participation seems to be influence
 
 In epoch 36, a new program was launched where certain quests would receive token rewards (which have monetary value), as opposed to just receiving XP points. We will study this further in RQ5 but for now, we note that this leads an increase in participation: 34\% increase in epoch 37 and 128.7 \% by epoch 42. The reward program kept evolving and increasing rewards over the following epochs. By epoch 50 the cumulative effect of this token program was 251.8\%.
 
+Retention rate can be computed as $RR= \frac{(E-N)}{S}\cdot 100$ for users at the start ($S$), end ($E$), and newly acquired users ($N$). Between epochs 21 and 35, RR was -0.183\%. After token rewards were introduced (epoch 42), $RR$ rose slightly to just 0.59\%. Transaction volume dropped sharply from 11,301,078 at peak participation to just 572,595 by epoch 39 (5\% of peak volume). Taken together, retention is extremely low and incentive-driven (reacting to monetary rewards). This supports the idea that user engagement was transactional and profit-driven rather than loyalty-driven.
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -168,7 +168,7 @@ Consider Figure~\ref{fig:tokens} which depicts 5 quests by colour, each offered 
 
 This was not a perfect experiment for assessing the association of monetary rewards with quest completion, as the rewards were capped at \$5000 USD, allowing a maximum of 50,000 users to claim rewards before they ran out. Further, if two quests offered monetary rewards in the same epoch, they would compete against each other until the tokens were depleted (see epoch 46 in Figure~\ref{fig:tokens}).
 
-Despite these defects in the data, the results are insightful: even with a minimal reward, completion rates surged. The highest increase was over 12x for a quest typically completed by around 3,500 users. With the token reward, this quest (purple in Figure~\ref{fig:tokens}) saw 44,196 completions. Directly after the token reward for this quest was removed, the completion rate dropped back to its original levels before the reward was introduced. 
+Despite these defects in the data, the results are insightful: even with a minimal reward, completion rates surged. The highest increase was over 12x for a quest typically completed by around 3,500 users. With the token reward, this quest (purple in Figure~\ref{fig:tokens}) saw 44,196 completions. Directly after the token reward for this quest was removed, the completion rate dropped back to its original levels before the reward was introduced. Note that in the literature on loyality programs, users prefer monetary rewards as opposed to non-monetary~\cite{RK17}.
 
 These data reveal that the introduction of a token reward is associated with a spike in completions, while the removal of the reward corresponds with a decline back to earlier levels. These spikes suggest that token rewards do not foster loyalty or habitual engagement but rather create a purely transactional relationship. Users appear to compare the cost to the reward and only engage when there is a clear opportunity for profit.
 
@@ -237,20 +237,6 @@ We expect project-based stakeholders to tacitly support farming (or at least tur
 
 When it comes to the final three columns, which emphasize the main groups that might make revenue from quests, there are no big surprises. No one opposes stakeholder capturing some revenue and stakeholder groups are self-interested, prioritizing revenue to themselves. In our evaluation, we assume revenues are non-zero sum---that is, revenue to one stakeholder group does not siphon profit from the others.
 
-
-\subsection{DQ3: Do Quests Build Loyalty?}
-
-Previous research on loyalty programs (LPs) offers mixed conclusions: some studies show positive effects on customer behavior and profitability (Vivek et al., 2012; Chaudhuri et al., 2019), while others question their effectiveness, emphasizing design and resource allocation (McKinsey, 2014; Steinhoff \& Palmatier, 2014). Loyalty can be measured behaviorally (e.g., retention, transaction volume) or attitudinally (e.g., satisfaction, willingness to recommend, NPS) (Dick \& Basu, 1994; Reichheld, 2003).
-In our analysis, we conclude that this program failed at building loyalty. We focus on two quantifiable metrics: retention and transaction count, as LPs primarily aim to retain customers who spend more and resist competitor incentives (Veloutsou 2015; KPMG, 2019).
-Using the retention rate (RR) formula:
-$RR= (E-N)/ S \cdot 100$
-Where:
-E: number of users at the end of the period 
-N: number of new users acquired during the period
-S: number of users at the start 
-
-Between epochs 21 and 35, RR was -0.183\%, indicating a complete lack of retention. After token rewards were introduced (epoch 42), RR rose slightly to just 0.59\%, still extremely low, suggesting users re-engaged only when incentives returned, reinforcing that their participation was purely transactional, not loyalty-driven.
-Additionally, transaction volume dropped sharply from 11,301,078 at peak participation to just 572,595 by epoch 39 (5\% of peak volume) before rewards triggered renewed quest completion. This further supports that user engagement was profit-driven rather than loyalty-driven.
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
