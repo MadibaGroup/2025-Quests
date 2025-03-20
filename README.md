@@ -6,7 +6,7 @@ Joseph Al-Chami and Jeremy Clark (Concordia University)
 
 ------
 
-[/data](/data) : our dataset (which deidentifies the company) and README explaining the data
+[/dataset](/dataset) : our dataset (which deidentifies the company) and README explaining the data
 
 [Reviews.md](Reviews.md) : reviews on the paper and how we addressed them in the camera-ready
 
