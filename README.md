@@ -6,8 +6,8 @@ Joseph Al-Chami and Jeremy Clark (Concordia University)
 
 ------
 
-[/data](/data/README) : our dataset (which deidentifies the company) and README explaining the data
+[/data](/data) : our dataset (which deidentifies the company) and README explaining the data
 
-[Reviews.md](reviews.md) : reviews on the paper and how we addressed them in the camera-ready
+[Reviews.md](Reviews.md) : reviews on the paper and how we addressed them in the camera-ready
 
 [/LaTeX](/LaTeX) : revisions on paper after acceptance (first commit is the paper as submitted, last commit is the final camera-ready)
